@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+ usersdb:
+   container_name: sensors_db
+   image: postgres:9
+   ports:
+     - "${DB_PORT}:5432"
+   environment:
+     POSTGRES_USER: ${DB_USERNAME}
+     POSTGRES_PASSWORD: ${DB_PASSWORD}
+     POSTGRES_DB: ${DB_NAME}
+   volumes:
+     - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+#   image: timescale/timescaledb
